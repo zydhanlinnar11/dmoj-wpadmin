@@ -37,6 +37,9 @@ class SubModelMenu(AppListElementMixin, MenuItem):
 
                 model = model_map.get(entry.get('model'))
                 children = entry.get('children')
+            elif isinstance(entry, tuple) and len(entry) == 2:
+                model = model_map.get(model[0])
+                kwargs['icon'] = entry[1]
             else:
                 model = model_map.get(entry)
                 children = None
