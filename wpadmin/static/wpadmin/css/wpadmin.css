@@ -54,8 +54,8 @@ body {
     list-style: none
 }
 
-.wp-menu li.wp-no-url>a,
-.wp-menu li.wp-no-url>.wp-menu-image a {
+.wp-menu li.wp-no-url > a,
+.wp-menu li.wp-no-url > .wp-menu-image a {
     cursor: default
 }
 
@@ -65,7 +65,7 @@ body {
     font-size: inherit
 }
 
-.wp-menu .wp-menu-top>a {
+.wp-menu .wp-menu-top > a {
     font-weight: 400;
     padding: 8px 0;
     line-height: 18px;
@@ -87,12 +87,12 @@ body {
     font-size: 1.2em
 }
 
-.wp-menu .wp-menu-top.wp-has-add-url>a {
+.wp-menu .wp-menu-top.wp-has-add-url > a {
     padding-right: 1.5em;
     min-width: 8.5em
 }
 
-.wp-menu .wp-menu-top.wp-has-add-url>a.wp-add-url {
+.wp-menu .wp-menu-top.wp-has-add-url > a.wp-add-url {
     position: absolute;
     right: 0;
     top: 0;
@@ -164,23 +164,23 @@ body {
     overflow: hidden
 }
 
-.wp-menu .wp-submenu .wp-submenu-wrap ul li.wp-has-add-url>a:first-child {
+.wp-menu .wp-submenu .wp-submenu-wrap ul li.wp-has-add-url > a:first-child {
     width: 110px;
     float: left
 }
 
-.wp-menu .wp-submenu .wp-submenu-wrap ul li.wp-has-add-url>a.wp-add-url {
+.wp-menu .wp-submenu .wp-submenu-wrap ul li.wp-has-add-url > a.wp-add-url {
     width: 10px;
     padding-left: 8px;
     padding-right: 8px;
     float: right
 }
 
-.wp-menu .wp-submenu .wp-submenu-wrap ul li.wp-has-submenu>a:first-child {
+.wp-menu .wp-submenu .wp-submenu-wrap ul li.wp-has-submenu > a:first-child {
     position: relative
 }
 
-.wp-menu .wp-submenu .wp-submenu-wrap ul li.wp-has-submenu>a:first-child:after {
+.wp-menu .wp-submenu .wp-submenu-wrap ul li.wp-has-submenu > a:first-child:after {
     content: "\f0da";
     display: inline-block;
     font-family: FontAwesome;
@@ -194,7 +194,7 @@ body {
     opacity: .5
 }
 
-.wp-menu .wp-submenu .wp-submenu-wrap ul li.wp-has-submenu:hover>a:first-child:after {
+.wp-menu .wp-submenu .wp-submenu-wrap ul li.wp-has-submenu:hover > a:first-child:after {
     opacity: 1
 }
 
@@ -211,7 +211,7 @@ body {
     display: none !important
 }
 
-.wp-menu li:hover>.wp-submenu {
+.wp-menu li:hover > .wp-submenu {
     display: block
 }
 
@@ -272,8 +272,12 @@ body.wp-with-left-menu #container {
     float: none !important
 }
 
-#adminmenu .wp-menu-top>a {
+#adminmenu .wp-menu-top > a {
     min-width: 10em
+}
+
+#adminmenu .wp-menu-top > a.wp-add-url {
+    min-width: unset
 }
 
 #adminmenu .wp-submenu {
@@ -281,7 +285,7 @@ body.wp-with-left-menu #container {
     left: 160px
 }
 
-#adminmenu .wp-menu-open>a:after {
+#adminmenu .wp-menu-open > a:after {
     content: "";
     border: 8px solid rgba(0, 0, 0, 0);
     display: block;
@@ -295,7 +299,7 @@ body.wp-with-left-menu #container {
     pointer-events: none
 }
 
-#adminmenu .wp-menu-open>.wp-submenu {
+#adminmenu .wp-menu-open > .wp-submenu {
     display: block;
     bottom: auto;
     left: auto;
@@ -306,7 +310,7 @@ body.wp-with-left-menu #container {
     padding: 0
 }
 
-#adminmenu .wp-menu-open>.wp-submenu>.wp-submenu-wrap {
+#adminmenu .wp-menu-open > .wp-submenu > .wp-submenu-wrap {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none
@@ -318,7 +322,7 @@ body.wp-with-left-menu #container {
     min-height: 30px
 }
 
-#adminmenu .wp-menu-tools>a {
+#adminmenu .wp-menu-tools > a {
     line-height: 16px
 }
 
@@ -342,7 +346,7 @@ body.wp-folded #adminmenu .wp-menu-top {
     width: 36px
 }
 
-body.wp-with-left-menu.wp-folded #adminmenu .wp-menu-top>a {
+body.wp-with-left-menu.wp-folded #adminmenu .wp-menu-top > a {
     display: none
 }
 
@@ -387,7 +391,7 @@ body.wp-with-left-menu.wp-folded #adminmenu .wp-menu-open .wp-submenu {
     display: none
 }
 
-body.wp-with-left-menu.wp-folded #adminmenu .wp-menu-open:hover>.wp-submenu {
+body.wp-with-left-menu.wp-folded #adminmenu .wp-menu-open:hover > .wp-submenu {
     display: block
 }
 
@@ -451,7 +455,7 @@ body.popup {
     height: 34px
 }
 
-#adminbarwrap #adminbar .wp-menu-top>a {
+#adminbarwrap #adminbar .wp-menu-top > a {
     float: left;
     padding-right: 10px
 }
@@ -461,7 +465,7 @@ body.popup {
     left: 0
 }
 
-#adminbarwrap #adminbar.wp-narrow .wp-menu-top>a {
+#adminbarwrap #adminbar.wp-narrow .wp-menu-top > a {
     display: none
 }
 
@@ -1668,7 +1672,7 @@ body.change-form #content-main {
     border-bottom: none
 }
 
-#content .form-row>div {
+#content .form-row > div {
     margin-top: 8px
 }
 
@@ -1836,7 +1840,7 @@ body.change-form #content-main {
     top: 2px
 }
 
-#content .module>p:first-child {
+#content .module > p:first-child {
     margin-top: .8em
 }
 
@@ -1845,7 +1849,7 @@ body.change-form #content-main {
         margin: -10px 0 15px
     }
 
-    body.change-form #content #content-main>form {
+    body.change-form #content #content-main > form {
         clear: both
     }
 
