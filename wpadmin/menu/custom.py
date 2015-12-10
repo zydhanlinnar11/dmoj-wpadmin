@@ -27,7 +27,7 @@ class SubModelMenu(AppListElementMixin, MenuItem):
         model_map = get_model_map(get_admin_site(context))
 
         for entry in self.subtree:
-            add_url = None
+            children = None
             kwargs = {}
 
             if isinstance(entry, dict):
@@ -38,11 +38,10 @@ class SubModelMenu(AppListElementMixin, MenuItem):
                 model = model_map.get(entry.get('model'))
                 children = entry.get('children')
             elif isinstance(entry, tuple) and len(entry) == 2:
-                model = model_map.get(model[0])
+                model = model_map.get(entry[0])
                 kwargs['icon'] = entry[1]
             else:
                 model = model_map.get(entry)
-                children = None
 
             if model is not None:
                 kwargs['url'] = self._get_admin_change_url(model, context)
