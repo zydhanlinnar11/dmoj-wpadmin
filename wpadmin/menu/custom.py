@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.utils.text import capfirst
 
 from wpadmin.menu.menus import Menu
@@ -62,11 +63,25 @@ class CustomModelLeftMenu(Menu):
         """
         return user.is_staff
 
-    def init_with_context(self, context):
+    def get_model_children(self, context):
         if not self.is_user_allowed(context.get('request').user):
-            return
+            return []
+
         tree = get_wpadmin_settings(get_admin_site_name(context)).get('custom_menu', [])
         menu = SubModelMenu('', tree)
         menu.init_with_context(context)
-        self.children += menu.children
+        return menu.children
 
+    def init_with_context(self, context):
+        self.children += self.get_model_children(context)
+
+
+class CustomModelLeftMenuWithDashboard(CustomModelLeftMenu):
+    def init_with_context(self, context):
+        self.children.append(MenuItem(
+            title='Dashboard',
+            icon='fa-tachometer',
+            url=reverse('%s:index' % get_admin_site_name(context)),
+            description='Dashboard',
+        ))
+        super(CustomModelLeftMenuWithDashboard, self).init_with_context(context)
