@@ -53,7 +53,10 @@ class SubModelMenu(AppListElementMixin, MenuItem):
                 if kwargs.get('title') is None:
                     kwargs['title'] = capfirst(model._meta.verbose_name_plural)
 
-            kwargs['description'] = entry.get('description', kwargs.get('title'))
+            if isinstance(entry, dict):
+                kwargs['description'] = entry.get('description', kwargs.get('title'))
+            else:
+                kwargs['description'] = kwargs.get('title')
 
             if children is None:
                 self.children.append(MenuItem(**kwargs))
