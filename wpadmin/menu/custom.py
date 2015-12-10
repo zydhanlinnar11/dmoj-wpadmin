@@ -35,22 +35,25 @@ class SubModelMenu(AppListElementMixin, MenuItem):
                 kwargs['icon'] = entry.get('icon')
                 kwargs['url'] = entry.get('url')
 
-                model = model_map.get(entry.get('model'))
+                model = entry.get('model')
                 children = entry.get('children')
             elif isinstance(entry, tuple) and len(entry) == 2:
-                model = model_map.get(entry[0])
-                kwargs['icon'] = entry[1]
+                model, kwargs['icon'] = entry
             else:
-                model = model_map.get(entry)
+                model = entry
 
             if model is not None:
+                model = model_map.get(model)
+                if model is None:
+                    continue
+
                 kwargs['url'] = self._get_admin_change_url(model, context)
                 kwargs['add_url'] = self._get_admin_add_url(model, context)
 
                 if kwargs.get('title') is None:
                     kwargs['title'] = capfirst(model._meta.verbose_name_plural)
 
-            kwargs['description'] = kwargs['title']
+            kwargs['description'] = entry.get('description', kwargs.get('title'))
 
             if children is None:
                 self.children.append(MenuItem(**kwargs))
