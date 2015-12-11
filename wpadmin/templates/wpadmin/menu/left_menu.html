@@ -3,6 +3,7 @@
 	<div id="adminmenuback"></div>
 	<div id="adminmenuwrap">
 		<ul id="adminmenu" class="wp-menu" role="navigation">
+			<br/>
 			{% for item in menu.children %}
 				{% if item.is_user_tools %}
 					{% wpadmin_render_user_tools item forloop.first forloop.last %}
