@@ -1,5 +1,5 @@
-{% load wpadmin_tags wpadmin_menu_tags staticfiles %}{% load firstof from future %}<!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+{% load wpadmin_tags wpadmin_menu_tags %}{% load static from staticfiles %}{% load firstof from future %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 <head>
 {# WP Admin start #}
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -38,18 +38,17 @@
 	window.__wpadmin_cookie_name = 'djangoWpAdminSettings';
 
 	// we need jQuery in default namespace (not django.jQuery) because we use some external jQuery plugins
-	/*if (typeof jQuery == 'undefined') {
+	if (typeof jQuery == 'undefined') {
 		// we can get jQuery object from django object but there are some admin templates where jQuery is not loaded
 		if (typeof django == 'undefined' || typeof django.jQuery == 'undefined') {
 			// so lets load our jQuery synchronously
 			document.write(decodeURI("%3Cscript src='{% static "wpadmin/js/lib/jquery.min.js" %}' type='text/javascript'%3E%3C/script%3E"));
 		} else {
 			// lest copy jQuery from django object to default namespace
-			var jQuery = django.jQuery;
+			window.jQuery = django.jQuery;
 		}
-	}*/
+	}
 </script>
-<script type="text/javascript" src="{{ JQUERY_JS }}"></script>
 <script type="text/javascript" src="{% static "wpadmin/js/lib/jquery.cookie.min.js" %}"></script>
 <script type="text/javascript" src="{% static "wpadmin/js/menus.js" %}"></script>
 <script type="text/javascript" src="{% static "wpadmin/js/content.js" %}"></script>
