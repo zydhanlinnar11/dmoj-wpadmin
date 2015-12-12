@@ -11,6 +11,45 @@ from wpadmin.menu.utils import get_menu
 
 register = template.Library()
 
+class GravatarUrlNode(template.Node):
+    def __init__(self, email, size='80', default=False, as_=None, variable=None):
+        self.email = template.Variable(email)
+        self.size = template.Variable(size)
+        self.default = template.Variable(default)
+        self.variable = as_ and variable
+ 
+    def render(self, context):
+        try:
+            email = self.email.resolve(context)
+        except template.VariableDoesNotExist:
+            return ''
+        try:
+            size = self.size.resolve(context)
+        except template.VariableDoesNotExist:
+            size = 80
+        try:
+            default = self.default.resolve(context)
+        except template.VariableDoesNotExist:
+            default = False
+
+        gravatar_url = '//www.gravatar.com/avatar/' + hashlib.md5(email.strip().lower()).hexdigest() + '?'
+        args = {'d': 'identicon', 's': str(size)}
+        if default:
+            args['f'] = 'y'
+        gravatar_url += urllib.urlencode(args)
+
+        if self.variable is not None:
+            context[self.variable] = gravatar_url
+            return ''
+        return gravatar_url
+ 
+@register.tag
+def gravatar_url(parser, token):
+    try:
+        return GravatarUrlNode(*token.split_contents()[1:])
+    except ValueError:
+        raise template.TemplateSyntaxError, '%r tag requires an email and an optional size' % token.contents.split()[0]
+
 
 class IsMenuEnabledNode(template.Node):
 
@@ -119,24 +158,3 @@ def wpadmin_render_user_tools(context, item, is_first, is_last):
 register.inclusion_tag(
     'wpadmin/menu/user_tools.html',
     takes_context=True)(wpadmin_render_user_tools)
-
-
-def gravatar_url(user, size, https=True):
-    default = 'retro'
-    if https:
-        url = 'https'
-    else:
-        url = 'http'
-    url += '://www.gravatar.com/avatar.php?'
-    if hasattr(user, 'email') and user.email:
-        gravatar_id = hashlib.md5(user.email.lower().encode('utf-8')).hexdigest()
-    else:
-        gravatar_id = '00000000000000000000000000000000'
-    url += urlencode({
-        'gravatar_id': gravatar_id,
-        'default': default,
-        'size': str(size)})
-    return url
-
-register.simple_tag(gravatar_url)
-
