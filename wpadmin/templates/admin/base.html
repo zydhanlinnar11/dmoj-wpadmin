@@ -11,7 +11,7 @@
 {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}
 {# WP Admin start #}
 {% if INLINE_FONTAWESOME %}
-<link rel="stylesheet" type="text/css" href="{% static "libs/font-awesome.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "libs/fontawesome/font-awesome.css" %}" />
 {% elif FONTAWESOME_CSS %}
 <link rel="stylesheet" type="text/css" href="{{ FONTAWESOME_CSS }}" />
 {% else %}
