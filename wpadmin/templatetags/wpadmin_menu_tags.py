@@ -12,6 +12,7 @@ from wpadmin.menu.utils import get_menu
 
 register = template.Library()
 
+
 class GravatarUrlNode(template.Node):
     def __init__(self, email, size='80', default=False, as_=None, variable=None):
         self.email = template.Variable(email)
@@ -29,27 +30,29 @@ class GravatarUrlNode(template.Node):
         except template.VariableDoesNotExist:
             size = 80
 
-        gravatar_url = '//www.gravatar.com/avatar/' + hashlib.md5(email.strip().lower()).hexdigest() + '?'
+        gravatar_url = '//www.gravatar.com/avatar/' + hashlib.md5(email.strip().lower().encode('utf-8')).hexdigest() + '?'
         args = {'d': 'identicon', 's': str(size)}
         if self.default:
             args['f'] = 'y'
-        gravatar_url += urllib.urlencode(args)
+        try:
+            gravatar_url += urllib.urlencode(args)
+        except AttributeError:
+            gravatar_url += urllib.parse.urlencode(args)
 
         if self.variable is not None:
             context[self.variable] = gravatar_url
             return ''
         return gravatar_url
- 
+
+
 @register.tag
 def gravatar_url(parser, token):
     try:
         return GravatarUrlNode(*token.split_contents()[1:])
     except ValueError:
-        raise (
-            template.TemplateSyntaxError,
+        raise template.TemplateSyntaxError(
             '%r tag requires an email and an optional size' %
-            token.contents.split()[0]
-        )
+            token.contents.split()[0])
 
 
 class IsMenuEnabledNode(template.Node):
