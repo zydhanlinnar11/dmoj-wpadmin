@@ -4,7 +4,7 @@ Menu utilities.
 from importlib import import_module
 from fnmatch import fnmatch
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from wpadmin.utils import (
     get_wpadmin_settings, get_admin_site, get_admin_site_name)

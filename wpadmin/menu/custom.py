@@ -1,5 +1,5 @@
-from django.core.urlresolvers import reverse
 from django.utils.text import capfirst
+from django.urls import reverse
 
 from wpadmin.menu.menus import Menu
 from wpadmin.menu.items import MenuItem
