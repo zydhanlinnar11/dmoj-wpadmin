@@ -715,14 +715,6 @@ body.popup {
     top: 1px
 }
 
-#content .vDateField+.datetimeshortcuts a:last-child:after {
-    content: "\f073"
-}
-
-#content .vTimeField+.datetimeshortcuts a:last-child:after {
-    content: "\f017"
-}
-
 #content .datetime {
     min-width: 260px;
     float: left;
