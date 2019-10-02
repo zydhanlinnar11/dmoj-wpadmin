@@ -7,7 +7,7 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name='django-wpadmin',
+    name='dmoj-wpadmin',
     version='.'.join(str(x) for x in VERSION),
     description='WordPress look and feel for Django administration panel.',
     long_description = '''
