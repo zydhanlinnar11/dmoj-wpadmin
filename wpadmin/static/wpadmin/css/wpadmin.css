@@ -13,6 +13,7 @@ body {
 #wrapper {
     height: auto;
     min-height: 100%;
+    margin-top: 34px;
     width: 100%;
     position: relative
 }
@@ -422,7 +423,6 @@ body.popup #container {
 }
 
 body {
-    padding-top: 34px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
