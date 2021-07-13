@@ -28,7 +28,7 @@ def get_admin_site_name(context):
     path = path.split('/')
     path.pop(0)
     if lang and path[0] == lang:
-        return path.pop(0)
+        path.pop(0)
     return '/'.join(x for x in path)
 
 
