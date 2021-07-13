@@ -26,9 +26,10 @@ def get_admin_site_name(context):
     path = context.get('request').path
     lang = get_language_from_path(path)
     path = path.split('/')
-    if lang and path[1] == lang:
-        return path[2]
-    return path[1]
+    path.pop(0)
+    if lang and path[0] == lang:
+        return path.pop(0)
+    return '/'.join(x for x in path)
 
 
 def get_admin_site(context):
