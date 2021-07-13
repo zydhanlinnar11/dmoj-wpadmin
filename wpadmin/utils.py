@@ -32,6 +32,10 @@ def get_admin_site_name(context):
         path.pop(0)
     if path[len(path) - 1] == '':
         path.pop(len(path) - 1)
+    if path[0] == 'sch-npc':
+        path.pop(0)
+        path.pop(0)
+        path.pop(0)
     print('Admin site name: ' + '/'.join(x for x in path), file=sys.stderr)
     return '/'.join(x for x in path)
 
