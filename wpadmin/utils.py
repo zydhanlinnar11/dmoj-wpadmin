@@ -6,6 +6,7 @@ from importlib import import_module
 from django.conf import settings
 from django.contrib import admin
 from django.utils.translation import get_language_from_path
+import sys
 
 
 def get_wpadmin_settings(admin_site_name='admin'):
@@ -29,6 +30,7 @@ def get_admin_site_name(context):
     path.pop(0)
     if lang and path[0] == lang:
         path.pop(0)
+    print('Admin site name: ' + '/'.join(x for x in path), file=sys.stderr)
     return '/'.join(x for x in path)
 
 
